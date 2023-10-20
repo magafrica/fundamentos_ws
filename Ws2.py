@@ -4,11 +4,8 @@ import matplotlib.pyplot as plt
 import requests
 import json
 
-# María = 40683
 r1= requests.get("https://api.idescat.cat/onomastica/v1/nadons/dades.json?id=40683&class=t&lang=en")
 
-#r = requests.get("https://api.idescat.cat/onomastica/v1/nadoms/dades.json?id=MARIA&class=t&lang=en")
-#print(r.text)
 data = r1.text
 data = json.loads(data)
 ff = data['onomastica_nadons']['ff']['f']
