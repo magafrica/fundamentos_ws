@@ -27,8 +27,8 @@ df1 = df1.T
 df1 = df1.groupby(df1.index.str.split('-').str[0]).mean()
 
 plt.bar(['2017','2018','2019','2020','2021','2022'], list(df1.iloc[:, 0]))
-plt.xlabel('Años')
-plt.ylabel('Valor')
+plt.xlabel('Years')
+plt.ylabel('Values')
 plt.title('EU Confidence 2017-2022')
 plt.gca().invert_yaxis()
 
@@ -41,9 +41,11 @@ columns_to_select = [f"{2022}-{month:02}" for month in range(1, 13)]
 df2 = df[columns_to_select]
 df2 = df2[12:13]
 
+
+
 plt.bar(['Jan','Feb','Mar','Apr','May','Jun,','Jul', 'Aug','Sep','Oct','Nov','Dec'], list(df2.iloc[0]))
-plt.xlabel('Índice')
-plt.ylabel('Valor')
+plt.xlabel('Months')
+plt.ylabel('Values')
 plt.title('EU Confidence 2017-2022')
 plt.gca().invert_yaxis()
 plt.show()
