@@ -27,8 +27,6 @@ categories = ['2018','2019','2020','2021','2022']
 fig, ax = plt.subplots()
 width = 0.35  # Width of each bar
 x = np.arange(len(categories))  # X-axis positions
-print(list(girls_5years))
-print(num_marias)
 bar1 = ax.bar(x - width/2, list(girls_5years), width, label='Number of girls born per year')
 bar2 = ax.bar(x + width/2, num_marias, width, label='Number of Marias born per year')
 
