@@ -5,7 +5,6 @@ import requests
 import json
 import numpy as np
 
-
 file = pd.read_csv('newborns_catalonia.csv', sep=';')
 girls = file['Girls']
 girls_5years = girls[0:5]
@@ -42,9 +41,6 @@ ax.legend()
 plt.savefig('joined_barplot_girls_marias.png')
 plt.show()
 
-
-
-
 plt.bar(['2018','2019','2020','2021','2022'],num_marias)
 plt.xlabel('Years')
 plt.ylabel('Maria\'s')
@@ -52,3 +48,41 @@ plt.title('Women born in 2017-2022 named Maria')
 plt.savefig('ws2_marias.png')
 plt.show()
 
+start_year = 2018
+end_year = 2022
+marias = []
+#get all marias by comarcs from 2018 to 2022
+for i in range(start_year, end_year):
+    r2= requests.get("https://api.idescat.cat/onomastica/v1/nadons/dades.json?id=40683&class=com&t=" + str(i) + "&lang=en") 
+    data = r2.text
+    data = json.loads(data) 
+    ff2 = data['onomastica_nadons']['ff']['f']
+    coms = []
+    num_maria_coms = []
+    for dic in ff2:
+        if dic['c'] != 'Total':
+            place = dic['c']['content']
+            coms.append(place)
+            maria_coms = dic['pos1']['v']
+            num_maria_coms.append(maria_coms)
+    #convert _into 0s
+    num_maria_coms = list(map(lambda x: x.replace('_', '0'), num_maria_coms))
+    num_maria_coms = list(map(int, num_maria_coms))
+    marias.append(num_maria_coms)
+
+print(coms)
+#summing marias over the 5 years years
+marias = [sum(x) for x in zip(*marias)]
+
+#getting the comarc with max names of marias
+max_index = marias.index(max(marias))
+max_place = coms[max_index]
+print(max_place)
+
+plt.bar(coms,marias)
+plt.xlabel('Comarcs')
+plt.ylabel('Maria\'s')
+plt.xticks(rotation=90)
+plt.title('Women born named Maria in 2018-2022 per comarcs')
+plt.savefig('ws2_marias.png')
+plt.show()
