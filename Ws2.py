@@ -82,7 +82,7 @@ print('The comarc with more María\'s born in 2018-2022 in Catalonia is: ', max_
 plt.bar(coms,marias)
 plt.xlabel('Comarcs')
 plt.ylabel('Maria\'s')
-plt.xticks(rotation=90)
+plt.xticks(rotation=80)
 plt.title('Women born named Maria in 2018-2022 per comarcs')
 plt.savefig('ws2_marias.png')
 plt.show()
