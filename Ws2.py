@@ -70,14 +70,16 @@ for i in range(start_year, end_year):
     num_maria_coms = list(map(int, num_maria_coms))
     marias.append(num_maria_coms)
 
-print(coms)
+
 #summing marias over the 5 years years
 marias = [sum(x) for x in zip(*marias)]
 
 #getting the comarc with max names of marias
 max_index = marias.index(max(marias))
 max_place = coms[max_index]
-print(max_place)
+
+
+print('The comarc with more María\'s born in 2018-2022 in Catalonia is: ', max_place)
 
 plt.bar(coms,marias)
 plt.xlabel('Comarcs')
